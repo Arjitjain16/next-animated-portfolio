@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import Navlink from './Navlink';
+import { motion } from 'framer-motion';
+import Navlink from './Navlink'; // Import Navlink component
 
 const Navbar = () => {
   const links = [
@@ -14,12 +15,27 @@ const Navbar = () => {
 
   const [open, setOpen] = useState(false);
 
+  const variants = {
+    top: {
+      closed: { rotate: 0,},
+      opened: { rotate: 45, backgroundColor: `rgb(255,255,255)` },
+    },
+    center: {
+      closed: { opacity: 1 },
+      opened: { opacity: 0 },
+    },
+    bottom: {
+      closed: { rotate: 0 },
+      opened: { rotate: -45, backgroundColor: 'rgb(255,255,255)' },
+    },
+  };
+
   return (
-    <div className="flex justify-between  pt-5 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
+    <div className="flex justify-between pt-5 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
       <div className="hidden md:flex md:gap-4">
         {links.map((link, index) => (
           <Link key={index} href={link.url} className="text-2xl text-black hover:text-gray-400">
-            <Navlink link={link}/>
+            <Navlink link={link} />
           </Link>
         ))}
       </div>
@@ -50,14 +66,26 @@ const Navbar = () => {
       <button
         type="button"
         className="w-1/3 flex flex-col items-center justify-center gap-2 z-50 relative md:hidden"
-        onClick={()=>setOpen((prev) => !prev)}
+        onClick={() => setOpen((prev) => !prev)}
       >
-        <div className="bg-white h-1 w-8 rounded"></div>
-        <div className="bg-white h-1 w-8 rounded"></div>
-        <div className="bg-white h-1 w-8 rounded"></div>
+        <motion.div
+          variants={variants.top}
+          animate={open ? 'opened' : 'closed'}
+          className="bg-black h-1 w-12 rounded origin-center"
+        />
+        <motion.div
+          variants={variants.center}
+          animate={open ? 'opened' : 'closed'}
+          className="bg-black h-1 w-12 rounded"
+        />
+        <motion.div
+          variants={variants.bottom}
+          animate={open ? 'opened' : 'closed'}
+          className="bg-black h-1 w-12 rounded origin-left"
+        />
       </button>
       {open && (
-        <div className="h-screen w-screen bg-black absolute top-0 left-0 flex flex-col items-center justify-center text-4xl gap-8">
+        <div className="h-screen w-screen bg-black absolute top-0 left-0 flex flex-col items-center justify-center text-4xl gap-8 z-40">
           {links.map((link, index) => (
             <Link key={index} href={link.url} className="text-white hover:text-gray-400">
               {link.title}
