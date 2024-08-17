@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import Navlink from './Navlink';
 
 const Navbar = () => {
   const links = [
@@ -14,19 +15,19 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex justify-between items-center py-5 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
+    <div className="flex justify-between  pt-5 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
       <div className="hidden md:flex md:gap-4">
         {links.map((link, index) => (
           <Link key={index} href={link.url} className="text-2xl text-black hover:text-gray-400">
-            {link.title}
+            <Navlink link={link}/>
           </Link>
         ))}
       </div>
       {/* logo */}
-      <div className="md:hidden">
+      <div className="md:hidden lg:flex">
         <Link href="/" className="flex items-center bg-black rounded text-white">
-          <span className="p-2">Arjit</span>
-          <span className="bg-white text-black rounded-md border-[5px] flex items-center border-black p-2">
+          <span className="p-1">Arjit</span>
+          <span className="bg-white text-black rounded-md border-[5px] flex items-center border-black p-1">
             Jain
           </span>
         </Link>
@@ -49,11 +50,11 @@ const Navbar = () => {
       <button
         type="button"
         className="w-1/3 flex flex-col items-center justify-center gap-2 z-50 relative md:hidden"
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={()=>setOpen((prev) => !prev)}
       >
-        <div className="bg-white h-1 w-9 rounded"></div>
-        <div className="bg-white h-1 w-9 rounded"></div>
-        <div className="bg-white h-1 w-9 rounded"></div>
+        <div className="bg-white h-1 w-8 rounded"></div>
+        <div className="bg-white h-1 w-8 rounded"></div>
+        <div className="bg-white h-1 w-8 rounded"></div>
       </button>
       {open && (
         <div className="h-screen w-screen bg-black absolute top-0 left-0 flex flex-col items-center justify-center text-4xl gap-8">
