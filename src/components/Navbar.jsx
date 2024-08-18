@@ -2,8 +2,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, stagger } from 'framer-motion';
 import Navlink from './Navlink'; // Import Navlink component
+import { list } from 'postcss';
 
 const Navbar = () => {
   const links = [
@@ -29,6 +30,20 @@ const Navbar = () => {
       opened: { rotate: -45, backgroundColor: 'rgb(255,255,255)' },
     },
   };
+
+  const listVariant = {
+    closed : { x : "100vw"},
+    opened : { x : "0" ,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  }
+
+  const listItemVariant = {
+    closed : { opacity: 0 , x: "10vw" },
+    opened : { opacity: 1 , x: "0" },
+  }
 
   return (
     <div className="flex justify-between pt-5 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
@@ -85,13 +100,15 @@ const Navbar = () => {
         />
       </button>
       {open && (
-        <div className="h-screen w-screen bg-black absolute top-0 left-0 flex flex-col items-center justify-center text-4xl gap-8 z-40">
+        <motion.div variants={listVariant} initial="closed" animate="opened" className="h-screen w-screen bg-black absolute top-0 left-0 flex flex-col items-center justify-center text-4xl gap-8 z-40">
           {links.map((link, index) => (
-            <Link key={index} href={link.url} className="text-white hover:text-gray-400">
+            <motion.div key={index} variants={listItemVariant}>
+              <Link  href={link.url} className="text-white hover:text-gray-400">
               {link.title}
             </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );
