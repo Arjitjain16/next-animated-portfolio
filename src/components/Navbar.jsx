@@ -2,9 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { motion, stagger } from 'framer-motion';
+import { motion} from 'framer-motion';
 import Navlink from './Navlink'; // Import Navlink component
-import { list } from 'postcss';
 
 const Navbar = () => {
   const links = [
@@ -18,7 +17,7 @@ const Navbar = () => {
 
   const variants = {
     top: {
-      closed: { rotate: 0,},
+      closed: { rotate: 0},
       opened: { rotate: 45, backgroundColor: `rgb(255,255,255)` },
     },
     center: {
@@ -79,7 +78,6 @@ const Navbar = () => {
       </div>
       {/* button */}
       <button
-        type="button"
         className="w-1/3 flex flex-col items-center justify-center gap-2 z-50 relative md:hidden"
         onClick={() => setOpen((prev) => !prev)}
       >
