@@ -1,5 +1,5 @@
 "use client"
-import { delay, easeInOut, easeOut, motion, useInView, useScroll } from "framer-motion";
+import { easeInOut, motion, useInView, useScroll } from "framer-motion";
 import React, { useRef } from 'react'
 
 const About = () => {
