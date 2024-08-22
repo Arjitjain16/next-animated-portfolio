@@ -3,7 +3,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import React, { useRef } from "react";
-import Link from "next/link";
+import Link from 'next/link';
+
 
 const Page = () => {
 
@@ -75,13 +76,13 @@ const Page = () => {
                   className={`w-screen h-screen flex items-center justify-center bg-gradient-to-r ${item.color}`}
                 >
                   <div className="flex flex-col gap-8 text-white">
-                    <h1 className="font-bold text-7xl">{item.title}</h1>
-                    <div className="relative w-[27vw] h-72">
-                      <Image src={item.img} alt={item.title} layout="fill" className="object-cover rounded-md" />
+                    <h1 className="font-bold text-xl md:text-4xl lg:text-6xl xl:text-8xl ">{item.title}</h1>
+                    <div className="relative shadow w-80 h-52 md:w-96 md:h-60 lg:w-[500px] lg:h-[300px] xl:w-[600px] xl:h-[360px]   ">
+                      <Image src={item.img} alt={item.title} layout="fill" className="object-cover rounded-md h-full w-full" />
                     </div>
-                    <p>{item.description}</p>
-                    <Link href={item.url}>
-                      <button className="bg-white text-black px-4 py-2 rounded">See Demo</button>
+                    <p className="w-72 md:w-96 lg:w-[500px] xl:w-[600px]">{item.description}</p>
+                    <Link href={item.url} className="flex justify-end">
+                      <button className="bg-white text-black px-3 py-3 md:p-4 lg:p-5 xl:p-6 font-semibold hover:bg-black hover:text-zinc-200 rounded">See Demo</button>
                     </Link>
                   </div>
                 </div>
@@ -92,7 +93,7 @@ const Page = () => {
          {/* "Hire Me" Section */}
          <div className="hire w-screen h-screen flex flex-col gap-16 items-center  text-center z-10">
           <div className="relative flex items-center justify-center pt-32 gap-12">
-            <h1 className="bg-[#D4D1DB] rounded text-7xl">Do you have any Project?</h1> {/* Adjusted font size */}
+            <h1 className="bg-[#D4D1DB] rounded px-2 text-2xl md:text-4xl md:px-4 lg:text-6xl lg:px-5 xl:text-7xl xl:px-6">Do you have any Project ?</h1> {/* Adjusted font size */}
             <div className="absolute top-full mt-8  flex gap-28 items-center justify-center"> {/* Adjust positioning */}
               <motion.svg 
               animate={{rotate:360}} 
@@ -111,8 +112,8 @@ const Page = () => {
                   <textPath href="#circlePath" className="text-xl font-semibold">Frontend Developer  &  Software Dev &bull;</textPath>
                 </text>
               </motion.svg>
-              <div className="absolute inset-0 flex items-center justify-center"> 
-                <Link href="/contact" className="bg-black text-white h-20 w-20 pt-6 rounded-full cursor-pointer  ring-2 flex item-center justify-center">
+              <div className="absolute  flex items-center justify-center cursor-pointer"> 
+                <Link href="/about" className="bg-black text-white h-20 w-20 cursor-pointer rounded-full ring-2 flex items-center justify-center">
                   Hire Me
                 </Link>
               </div>
